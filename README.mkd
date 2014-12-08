@@ -1,0 +1,57 @@
+
+# Super cool rails application template
+
+(WIP)
+
+## Server/Runner
+
+- unicorn
+- foreman
+
+## Admin
+
+- activeadmin
+
+## Form
+
+- simple_form
+- ransack
+
+## Database
+
+- squeel
+
+## Benri
+friendly_id
+
+## Authentication
+
+- devise
+- cancancan
+- rorify
+
+## Views
+
+- slim
+- coffee_script
+
+## Themes
+
+- bootstrap-sass
+- rails-assets-bootswatch-scss
+- font-awesome-sass
+
+## Development
+
+- better_errors
+- binding_of_caller
+- spring
+- html2slim
+- letter_opener_web
+
+## Test
+
+- rspec-rails
+- database_cleaner
+- capybara
+- factory_girl_rails
