@@ -1,15 +1,42 @@
 
+def choise(question, options)
+  question_text = "%s\n%s" % [
+    question,
+    options.with_index(1).map {|(k, v), i|
+      "  #{i}. #{k}"
+    }.join("\n")
+  ]
+  ans = options.keys[ask(question_text).to_i - 1]
+  if ans
+    puts "You choose `#{ans}`"
+    options[ans]
+  else
+    puts "Sorry, try again."
+    choise(question, options)
+  end
+end
+
 return unless yes? 'Use basic template?'
 
 heroku = yes? 'Is this the project for Heroku?'
 bootswatch = yes? 'Are you want to use bootswatch?'
 
 
+database = choise("What database do you want to use?", [
+                    'PostgreSQL' => 'pg',
+                    'MySQL' => 'mysql2',
+                    'MariaDB' => 'mariadb',
+                    'SQLite3' => 'sqlite3'
+                  ])
+
+database = ask_database
+while()
+
+
 # Gems {{{
 gem 'slim-rails'
 gem 'unicorn'
 gem 'devise'
-gem 'cancancan', '~> 1.9'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'bootstrap-sass', '~> 3.2.0.2'
 gem 'rails-assets-bootswatch-scss', '~> 3.2.0.3' if bootswatch
@@ -17,8 +44,8 @@ gem 'font-awesome-sass', '~> 4.2.0'
 gem 'friendly_id', '~> 5.0.4'
 gem 'ransack'
 gem 'squeel'
-gem 'sqlite3'
 gem_group :development do
+  gem 'sqlite3'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'foreman'
@@ -46,14 +73,14 @@ config.generators do |g|
 end
 EOS
 
-application <<-EOS
-config.generators do |g|
-  g.template_engine :slim
-  g.test_framework :rspec
-  g.fixture_replacement :factory_girl
-  g.view_specs false
-end
-EOS
+# application <<-EOS
+# config.generators do |g|
+#   g.template_engine :slim
+#   g.test_framework :rspec
+#   g.fixture_replacement :factory_girl
+#   g.view_specs false
+# end
+# EOS
 
 run 'bundle install'
 
