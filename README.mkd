@@ -3,6 +3,14 @@
 
 (WIP)
 
+## How to use
+
+```sh
+rails new [name] -m https://raw.githubusercontent.com/supermomonga/rails_template/master/basic.rb
+
+```
+
+
 ## Server/Runner
 
 - unicorn
